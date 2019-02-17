@@ -17,7 +17,7 @@ Works exactly like Win + D does **plus additional features**:
 Press key combination: *Left Windows Key + Left Shift + D* to minimize/restore windows **on monitor where cursor is currently on**.
 
 ## Credits
-In core of the project is @FrigoCoder 's code: https://github.com/FrigoCoder/FrigoTab
+In core of the project is @FrigoCoder's code: https://github.com/FrigoCoder/FrigoTab
 His code allows to get list of windows exactly like Alt + Tab does, what was excellent for my task.
 
 ## License
