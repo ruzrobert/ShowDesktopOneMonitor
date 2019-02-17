@@ -16,7 +16,7 @@ Works exactly like Win + D does **plus additional features**:
 - Specify path to *ShowDesktopOneMonitor.exe*
 - Trigger: *Run only when user is logged on*
 - Check *Run with highest priveleges*
-- On *Settings* tab make sure that task will not be stopped after running longer than some days, for example.
+- On *Settings* tab make sure that task will not be stopped after running longer than some days, for example.  
 Note: program has icon in tray, but unfortunatelly it is invisible, if app is started from Task Scheduler :(
 
 ## Usage
