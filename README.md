@@ -12,7 +12,12 @@ Works exactly like Win + D does **plus additional features**:
 ## Installation
 1. Download and extract archive somewhere  
 *See Releases section: https://github.com/ruzrobert/ShowDesktopOneMonitor/releases*
-2. Create task in Task Scheduler to start *ShowDesktopOneMonitor.exe* when user logs in, but with administrator rights.
+2. Create task in Task Scheduler:  
+- Specify path to *ShowDesktopOneMonitor.exe*
+- Trigger: *Run only when user is logged on*
+- Check *Run with highest priveleges*
+- On *Settings* tab make sure that task will not be stopped after running longer than some days, for example.
+Note: program has icon in tray, but unfortunatelly it is invisible, if app is started from Task Scheduler :(
 
 ## Usage
 Press key combination: *Left Windows Key + Left Shift + D* to minimize/restore windows **on monitor where cursor is currently on**.
