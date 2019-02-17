@@ -10,7 +10,7 @@ Works exactly like Win + D does **plus additional features**:
 - Minimizes/Restores only windows on specific monitor, remembering their states
 
 ## Installation
-1. Download and extract archive somewhere
+1. Download and extract archive somewhere. See Releases section: https://github.com/ruzrobert/ShowDesktopOneMonitor/releases
 2. Create task in Task Scheduler to start *ShowDesktopOneMonitor.exe* when user logs in, but with administrator rights.
 
 ## Usage
