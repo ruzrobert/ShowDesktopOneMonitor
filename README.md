@@ -5,7 +5,7 @@ Adds abillity to Show Desktop (Win + D) only for One Monitor!
 Works exactly like Win + D does **plus additional features**:
 - Shows desktop (minimizes all windows)
 - Restores windows to their previous states
-- Minimizes all windows if user changed state of any window or one of the windows opened / closed (exactly how Win + D works)
+- Minimizes all windows if user changed state of any window or one of the windows opened / closed (exactly how Win + D works)  
 **plus**
 - Minimizes/Restores only windows on specific monitor, remembering their states
 
