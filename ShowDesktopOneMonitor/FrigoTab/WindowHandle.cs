@@ -120,14 +120,30 @@ namespace FrigoTab {
 
         }
 
+        // Win32 does not support GetWindowLongPtr directly
+        private static IntPtr GetWindowLongPtr(WindowHandle hWnd, WindowLong nIndex)
+        {
+            if (IntPtr.Size == 8)
+            {
+                return GetWindowLongPtr64(hWnd, nIndex);
+            }
+            else
+            {
+                return GetWindowLongPtr32(hWnd, nIndex);
+            }
+        }
+
         [DllImport("user32.dll")]
         private static extern int GetWindowTextLength (WindowHandle hWnd);
 
         [DllImport("user32.dll")]
         private static extern int GetWindowText (WindowHandle hWnd, StringBuilder lpString, int nMaxCount);
 
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetWindowLongPtr (WindowHandle hWnd, WindowLong nIndex);
+        [DllImport("user32.dll", EntryPoint = "GetWindowLong")]
+        private static extern IntPtr GetWindowLongPtr32 (WindowHandle hWnd, WindowLong nIndex);
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowLongPtr")]
+        private static extern IntPtr GetWindowLongPtr64(WindowHandle hWnd, WindowLong nIndex);
 
         [DllImport("user32.dll")]
         private static extern bool ShowWindow (WindowHandle hWnd, ShowWindowCommand nCmdShow);
