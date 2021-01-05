@@ -15,9 +15,6 @@ namespace ShowDesktopOneMonitor
         private NotifyIcon trayIcon = null;
         private List<DesktopWindowID>[] PrevStateByScreen = new List<DesktopWindowID>[0];
 
-        private bool[] keyComb = new bool[3]; // buffer for Win + Shift + D
-        private GlobalKeyboardHook globalKeyboardHook;
-
         public MainAppContext ()
         {
             Application.ThreadException += this.Application_ThreadException;
@@ -34,35 +31,13 @@ namespace ShowDesktopOneMonitor
             };
             PrevStateByScreen = new List<DesktopWindowID>[Screen.AllScreens.Length];
 
-            globalKeyboardHook = new GlobalKeyboardHook();
-            globalKeyboardHook.KeyboardPressed += OnKeyPressed;
+            HotKeyManager.RegisterHotKey(Keys.D, KeyModifiers.Windows | KeyModifiers.Shift);
+            HotKeyManager.HotKeyPressed += new EventHandler<HotKeyEventArgs>(OnHotkeyPressed);
         }
 
-        private void OnKeyPressed (object sender, GlobalKeyboardHookEventArgs e)
+        private void OnHotkeyPressed(object sender, HotKeyEventArgs e)
         {
-            var key = (Keys)e.KeyboardData.VirtualCode;
-
-            if (key == Keys.LWin) {
-                keyComb[0] = e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown;
-                if (keyComb[0]) {
-                    keyComb[1] = keyComb[2] = false;
-                }
-            }
-            else if (key == Keys.LShiftKey && keyComb[0] == true) {
-                keyComb[1] = e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown;
-                if (keyComb[1]) {
-                    keyComb[2] = false;
-                }
-            }
-            else if (key == Keys.D && keyComb[0] == true && keyComb[1] == true) {
-                keyComb[2] = e.KeyboardState == GlobalKeyboardHook.KeyboardState.KeyDown;
-            }
-            
-            bool trigger = keyComb.All(x => x == true);
-            if (trigger) {
-                OnShowDesktopKeyComb();
-                e.Handled = true;
-            }
+            OnShowDesktopKeyComb();
         }
 
         private void OnShowDesktopKeyComb ()
@@ -150,7 +125,7 @@ namespace ShowDesktopOneMonitor
 
         ~MainAppContext () //Destructor
         {
-            globalKeyboardHook?.Dispose();
+            
         }
 
         private void Application_ThreadException (object sender, ThreadExceptionEventArgs e)
