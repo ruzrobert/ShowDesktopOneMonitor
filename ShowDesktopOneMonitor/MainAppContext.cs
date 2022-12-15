@@ -31,7 +31,10 @@ namespace ShowDesktopOneMonitor
             };
             PrevStateByScreen = new List<DesktopWindowID>[Screen.AllScreens.Length];
 
-            HotKeyManager.RegisterHotKey(Keys.D, KeyModifiers.Windows | KeyModifiers.Shift);
+            Keys hotKey = SettingsManager.ReadHotkey();
+            KeyModifiers keyModifiers = SettingsManager.ReadKeyModifiers();
+
+            HotKeyManager.RegisterHotKey(hotKey, keyModifiers);
             HotKeyManager.HotKeyPressed += new EventHandler<HotKeyEventArgs>(OnHotkeyPressed);
         }
 
@@ -125,7 +128,7 @@ namespace ShowDesktopOneMonitor
 
         ~MainAppContext () //Destructor
         {
-            
+            SettingsManager.Save();
         }
 
         private void Application_ThreadException (object sender, ThreadExceptionEventArgs e)
