@@ -57,6 +57,9 @@ namespace ShowDesktopOneMonitor
             // 3. Has the list changed from the previous list ?
             List<DesktopWindowID> newWindowIDs = ConvertWindowsToIDs(windows);
 
+            // screen number may have changed
+            Array.Resize(ref PrevStateByScreen, Screen.AllScreens.Length);
+
             // restore if all windows are minimized AND prev state differs only by windows style
             if (newWindowIDs.All(x => x.WindowStyle != WindowStyles.Visible) && PrevStateByScreen[screenIdx] != null 
                                         && DoesPrevStateDiffersOnlyByWindowsStyle(newWindowIDs, screenIdx)) {
